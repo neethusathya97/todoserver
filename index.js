@@ -1,19 +1,25 @@
 const express=require('express');
-const todo=require('./todo/todo');
-todo.addTodo
-
-const app=express();
+const app = express();
+const todo = require('./todo/todo');
+todo.addTodo("todo")
 
 const port=3000
 app.get('/', function(req,res){
-    const todos=[
-        {name:"todo1",description:"todo1 desc"},
-        {name:"todo2",description:"todo2 desc"},          
-        {name:"todo3",description:"todo3 desc"},
+    const todos= todo.getTodo();
+    res.json(todos);
+})
+    app.get('/add',function(req,res){
+        const todos=todo.addTodo({id:3,name:"todo4",description:"todo4 desc"});
+        res.json(todos)
+})
+app.get('/login',function(req,res){
+    res.send("Login Page");
 
-    ]
-    res.send(JSON.stringify(todos));
-
+})
+app.get('/delete',function(req,res){
+    console.log(req.query.id,"id");
+    const todos=todo.deleteTodo(req.query.id);
+    res.json(todos);
 })
 app.listen(port,function(){
     console.log(`example app listening on port ${port}!`)
