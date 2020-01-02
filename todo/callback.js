@@ -5,4 +5,4 @@ function myFunction(){
     console.log("HI");
 }
 syncFunction()
-console.log("completed")
+console.log("completed");
