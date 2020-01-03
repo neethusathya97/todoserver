@@ -1,3 +1,4 @@
+    const db=require('../db');
 
     let todos = [
         {id:0,name:"todo1",description:"todo1 desc"},
@@ -18,6 +19,10 @@ todo.description= description;
 return todos;
 }
 function getTodo(){
+    db.Todo.find()
+    .then(data=> {
+        console.log(data);
+    })
     return todos;
 }
 function deleteTodo(id){
@@ -26,9 +31,7 @@ function deleteTodo(id){
     });
     return todos;
 }
-function getTodo(){
-    return todos;
-}
+
 var name="todo"
 exports.addTodo=addTodo;
 exports.getTodo=getTodo;
