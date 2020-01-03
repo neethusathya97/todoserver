@@ -12,8 +12,10 @@ app.get('/',function(req,res){
 })
 })
 app.post('/create',function(req,res){
-  const todos=todo.addTodo(req.body);
-  res.json(todos);
+  todo.addTodo(req.body)
+  .then(data=>{
+  res.json(data);
+});
 })
 app.put('/edit/:id',function(req,res){
     const todos=todo.editTodo(req.params.id,req.body.name,req.body.description);
