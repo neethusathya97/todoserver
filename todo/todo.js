@@ -7,6 +7,11 @@
 
  ]
     function addTodo(todo){
+        const newTodo =new db.Todo(todo);
+        newTodo.save()
+        .then(data=>{
+            console.log(data);
+        })
         todos.push(todo);
         return todos;
 }
@@ -19,11 +24,12 @@ todo.description= description;
 return todos;
 }
 function getTodo(){
-    db.Todo.find()
-    .then(data=> {
-        console.log(data);
-    })
-    return todos;
+    //db.Todo.find()
+    //.then(data=> {
+        //console.log(data);
+        return db.Todo.find();
+    
+   // return todos;
 }
 function deleteTodo(id){
     todos=todos.filter(function(todo){
